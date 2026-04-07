@@ -2,7 +2,8 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Ticket Booking</title>
+<title>Order Tiket</title>
+
 <style>
 body {
   background: #06121f;
@@ -11,43 +12,50 @@ body {
   padding: 20px;
 }
 
+/* CARD */
 .card {
   background: linear-gradient(145deg, #0b1f3a, #071427);
-  padding: 20px;
+  padding: 25px;
   border-radius: 20px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(0,255,255,0.2);
+  margin-bottom: 25px;
+  border: 1px solid rgba(0,255,255,0.15);
 }
 
+/* TITLE */
 .title {
   font-size: 20px;
   margin-bottom: 15px;
-  letter-spacing: 2px;
 }
 
+/* TIKET */
 .ticket {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  border: 1px solid rgba(255,255,255,0.2);
-  padding: 12px;
+  padding: 15px;
   border-radius: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255,255,255,0.15);
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.ticket:hover {
+  background: rgba(0,255,255,0.05);
+}
+
+.ticket.active {
+  border: 1px solid cyan;
+  box-shadow: 0 0 10px rgba(0,255,255,0.5);
 }
 
 .ticket input {
-  margin-right: 10px;
+  display: none;
 }
 
-.label {
-  flex: 1;
-}
+.label { flex: 1; font-size: 14px; }
+.price { font-weight: bold; }
 
-.price {
-  font-weight: bold;
-}
-
+/* WARNA */
 .cat1 { color: #ff3b3b; }
 .cat2 { color: #ffe600; }
 .cat3 { color: #00e5ff; }
@@ -57,6 +65,7 @@ body {
 .vip { color: #00d4d4; }
 .vvip { color: #ffffff; }
 
+/* INPUT */
 select, .total {
   width: 100%;
   padding: 12px;
@@ -67,6 +76,28 @@ select, .total {
   margin-top: 10px;
 }
 
+/* PAYMENT */
+.payment label {
+  display: block;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.2);
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+/* QRIS */
+.qris {
+  text-align: center;
+}
+
+.qris img {
+  width: 220px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* BUTTON */
 button {
   width: 100%;
   padding: 15px;
@@ -76,62 +107,56 @@ button {
   color: white;
   font-size: 16px;
   margin-top: 20px;
+  cursor: pointer;
 }
 </style>
 </head>
 
 <body>
 
+<!-- PILIHAN TIKET -->
 <div class="card">
   <div class="title">PILIHAN TIKET</div>
 
-  <label class="ticket">
-    <input type="radio" name="ticket" value="3500000">
-    <span class="label vvip">CAT E / X / O / L (Standing Soundcheck)</span>
+  <div class="ticket" onclick="pilih(this, 3500000)">
+    <span class="label vvip">CAT E / X / O / L (Standing)</span>
     <span class="price">IDR 3.500.000</span>
-  </label>
+  </div>
 
-  <label class="ticket">
-    <input type="radio" name="ticket" value="3950000">
-    <span class="label vip">Horizon Box (Seating)</span>
+  <div class="ticket" onclick="pilih(this, 3950000)">
+    <span class="label vip">Horizon Box</span>
     <span class="price">IDR 3.950.000</span>
-  </label>
+  </div>
 
-  <label class="ticket">
-    <input type="radio" name="ticket" value="3550000">
-    <span class="label cat1">CAT 1 (Soundcheck Seating)</span>
+  <div class="ticket" onclick="pilih(this, 3550000)">
+    <span class="label cat1">CAT 1</span>
     <span class="price">IDR 3.550.000</span>
-  </label>
+  </div>
 
-  <label class="ticket">
-    <input type="radio" name="ticket" value="3300000">
-    <span class="label cat2">CAT 2 (Seating)</span>
+  <div class="ticket" onclick="pilih(this, 3300000)">
+    <span class="label cat2">CAT 2</span>
     <span class="price">IDR 3.300.000</span>
-  </label>
+  </div>
 
-  <label class="ticket">
-    <input type="radio" name="ticket" value="2700000">
-    <span class="label cat3">CAT 3 (Seating)</span>
+  <div class="ticket" onclick="pilih(this, 2700000)">
+    <span class="label cat3">CAT 3</span>
     <span class="price">IDR 2.700.000</span>
-  </label>
+  </div>
 
-  <label class="ticket">
-    <input type="radio" name="ticket" value="2250000">
-    <span class="label cat4">CAT 4 (Seating)</span>
+  <div class="ticket" onclick="pilih(this, 2250000)">
+    <span class="label cat4">CAT 4</span>
     <span class="price">IDR 2.250.000</span>
-  </label>
+  </div>
 
-  <label class="ticket">
-    <input type="radio" name="ticket" value="2000000">
-    <span class="label cat5">CAT 5 (Seating)</span>
+  <div class="ticket" onclick="pilih(this, 2000000)">
+    <span class="label cat5">CAT 5</span>
     <span class="price">IDR 2.000.000</span>
-  </label>
+  </div>
 
-  <label class="ticket">
-    <input type="radio" name="ticket" value="1550000">
-    <span class="label cat6">CAT 6 (Seating)</span>
+  <div class="ticket" onclick="pilih(this, 1550000)">
+    <span class="label cat6">CAT 6</span>
     <span class="price">IDR 1.550.000</span>
-  </label>
+  </div>
 
   <select id="qty">
     <option value="1">Jumlah Tiket: 1</option>
@@ -141,30 +166,61 @@ button {
   </select>
 
   <div class="total" id="total">Total: IDR 0</div>
-
 </div>
 
-<button>SUBMIT ORDER</button>
+<!-- PEMBAYARAN -->
+<div class="card">
+  <div class="title">METODE PEMBAYARAN</div>
+
+  <div class="payment">
+    <label><input type="radio" name="pay"> QRIS</label>
+    <label><input type="radio" name="pay"> Transfer Bank</label>
+    <label><input type="radio" name="pay"> E-Wallet</label>
+  </div>
+</div>
+
+<!-- QRIS -->
+<div class="card">
+  <div class="title">SCAN QRIS</div>
+  <div class="qris">
+    <!-- GANTI GAMBAR INI -->
+    <img src="qris.png" alt="QRIS">
+    <p>Scan untuk pembayaran</p>
+  </div>
+</div>
+
+<!-- CATATAN -->
+<div class="card">
+  <div class="title">CATATAN</div>
+  <p>• Harga belum termasuk pajak</p>
+  <p>• Tiket tidak dapat dikembalikan</p>
+  <label><input type="checkbox"> Saya setuju</label>
+</div>
+
+<button onclick="submitOrder()">SUBMIT ORDER</button>
 
 <script>
-const radios = document.querySelectorAll('input[name="ticket"]');
-const qty = document.getElementById('qty');
-const total = document.getElementById('total');
+let harga = 0;
 
-function hitung() {
-  let harga = 0;
-  radios.forEach(r => {
-    if (r.checked) harga = parseInt(r.value);
-  });
-
-  let jumlah = parseInt(qty.value);
-  let hasil = harga * jumlah;
-
-  total.innerText = "Total: IDR " + hasil.toLocaleString("id-ID");
+function pilih(el, value) {
+  document.querySelectorAll('.ticket').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  harga = value;
+  hitung();
 }
 
-radios.forEach(r => r.addEventListener('change', hitung));
-qty.addEventListener('change', hitung);
+function hitung() {
+  let qty = document.getElementById("qty").value;
+  let total = harga * qty;
+  document.getElementById("total").innerText =
+    "Total: IDR " + total.toLocaleString("id-ID");
+}
+
+document.getElementById("qty").addEventListener("change", hitung);
+
+function submitOrder() {
+  window.location.href = "https://succes-payment.carrd.co";
+}
 </script>
 
 </body>
