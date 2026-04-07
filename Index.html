@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Ticket Booking</title>
+<style>
+body {
+  background: #06121f;
+  font-family: Arial;
+  color: white;
+  padding: 20px;
+}
+
+.card {
+  background: linear-gradient(145deg, #0b1f3a, #071427);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0,255,255,0.2);
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.ticket {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 12px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.ticket input {
+  margin-right: 10px;
+}
+
+.label {
+  flex: 1;
+}
+
+.price {
+  font-weight: bold;
+}
+
+.cat1 { color: #ff3b3b; }
+.cat2 { color: #ffe600; }
+.cat3 { color: #00e5ff; }
+.cat4 { color: #5eff5e; }
+.cat5 { color: #ff6bff; }
+.cat6 { color: #a64dff; }
+.vip { color: #00d4d4; }
+.vvip { color: #ffffff; }
+
+select, .total {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: #000;
+  color: white;
+  border: none;
+  margin-top: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  font-size: 16px;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="title">PILIHAN TIKET</div>
+
+  <label class="ticket">
+    <input type="radio" name="ticket" value="3500000">
+    <span class="label vvip">CAT E / X / O / L (Standing Soundcheck)</span>
+    <span class="price">IDR 3.500.000</span>
+  </label>
+
+  <label class="ticket">
+    <input type="radio" name="ticket" value="3950000">
+    <span class="label vip">Horizon Box (Seating)</span>
+    <span class="price">IDR 3.950.000</span>
+  </label>
+
+  <label class="ticket">
+    <input type="radio" name="ticket" value="3550000">
+    <span class="label cat1">CAT 1 (Soundcheck Seating)</span>
+    <span class="price">IDR 3.550.000</span>
+  </label>
+
+  <label class="ticket">
+    <input type="radio" name="ticket" value="3300000">
+    <span class="label cat2">CAT 2 (Seating)</span>
+    <span class="price">IDR 3.300.000</span>
+  </label>
+
+  <label class="ticket">
+    <input type="radio" name="ticket" value="2700000">
+    <span class="label cat3">CAT 3 (Seating)</span>
+    <span class="price">IDR 2.700.000</span>
+  </label>
+
+  <label class="ticket">
+    <input type="radio" name="ticket" value="2250000">
+    <span class="label cat4">CAT 4 (Seating)</span>
+    <span class="price">IDR 2.250.000</span>
+  </label>
+
+  <label class="ticket">
+    <input type="radio" name="ticket" value="2000000">
+    <span class="label cat5">CAT 5 (Seating)</span>
+    <span class="price">IDR 2.000.000</span>
+  </label>
+
+  <label class="ticket">
+    <input type="radio" name="ticket" value="1550000">
+    <span class="label cat6">CAT 6 (Seating)</span>
+    <span class="price">IDR 1.550.000</span>
+  </label>
+
+  <select id="qty">
+    <option value="1">Jumlah Tiket: 1</option>
+    <option value="2">Jumlah Tiket: 2</option>
+    <option value="3">Jumlah Tiket: 3</option>
+    <option value="4">Jumlah Tiket: 4</option>
+  </select>
+
+  <div class="total" id="total">Total: IDR 0</div>
+
+</div>
+
+<button>SUBMIT ORDER</button>
+
+<script>
+const radios = document.querySelectorAll('input[name="ticket"]');
+const qty = document.getElementById('qty');
+const total = document.getElementById('total');
+
+function hitung() {
+  let harga = 0;
+  radios.forEach(r => {
+    if (r.checked) harga = parseInt(r.value);
+  });
+
+  let jumlah = parseInt(qty.value);
+  let hasil = harga * jumlah;
+
+  total.innerText = "Total: IDR " + hasil.toLocaleString("id-ID");
+}
+
+radios.forEach(r => r.addEventListener('change', hitung));
+qty.addEventListener('change', hitung);
+</script>
+
+</body>
+</html>
